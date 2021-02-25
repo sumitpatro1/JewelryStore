@@ -1,0 +1,39 @@
+<div class="input-group">
+  <label>
+    Weight in Grams
+  </label>
+  <input
+    [ngModel]="config.data.quantityInUnits"
+    readonly
+  />
+</div>
+<div class="input-group">
+  <label>
+    Gold Price/Gram
+  </label>
+  <input
+    [ngModel]="config.data.pricePerUnit"
+    readonly
+  />
+</div>
+<div class="input-group" *ngIf="auth.isPriviledged">
+  <label>
+    Discount %
+  </label>
+  <input
+    [ngModel]="config.data.discountPercent"
+    readonly
+  />
+</div>
+<div class="input-group">
+  <label>
+    Total Estimated Price
+  </label>
+  <input
+    [ngModel]="config.data.estimatedPrice"
+    readonly
+  />
+</div>
+<div>
+  <button class="btn bg-primary btn-flat" (click)="onOkClick()">Ok</button>
+</div>

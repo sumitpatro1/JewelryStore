@@ -1,0 +1,64 @@
+<div class="padded-container" role="main">
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <form
+          [formGroup]="loginForm" 
+          autocomplete="off" 
+          (ngSubmit)="login(loginForm.value)"  
+          id="Logon" 
+          class="row full"
+        >
+          <div class="input-group">
+            <h1>
+              Jewelry Store
+            </h1>
+          </div>
+          <div class="input-group">
+            <label>
+              User Name
+            </label>
+            <input
+              class="form-control"
+              formControlName="user_name"
+              placeholder="Enter email address"
+              type="email"
+            />
+            <span
+              *ngIf="loginForm.get('user_name').errors && loginForm.get('user_name').dirty"
+              class="input-error"
+            > Please enter a correct email address
+            </span>
+          </div>
+          <div class="input-group">
+            <label>
+              Password
+            </label>
+            <input
+              class="form-control"
+              formControlName="password"
+              placeholder="Enter Password"
+              autocomplete="off"
+              type="password"
+            />
+            <span
+              *ngIf="loginForm.get('password').errors && loginForm.get('password').dirty"
+              class="input-error"
+            > Please enter a password to proceed further
+            </span>
+          </div>
+          <div>
+            <button
+              class="btn bg-primary btn-flat spacing"
+              type="submit"
+              [disabled]="!loginForm.valid"
+            >
+              <i class="fa fa-calculate"></i>
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

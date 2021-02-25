@@ -1,0 +1,123 @@
+<div #wrapper class="content-wrapper">
+  <div class="container" style="min-height: inherit;">
+    <section class="content-header">
+      <h1>Price Estimation</h1>
+    </section>
+    <section class="content" style="padding-top: 5px;">
+      <div class="row">
+        <div class="col-md-12 mp-0">
+          <section class="content">
+            <div class="row">
+              <div class="col-md-12">
+                <form
+                  id="EstimateTemplate"
+                  name="estimate-price-form"
+                  [formGroup]="estimatePriceForm"
+                  (ngSubmit)="calculate()"
+                >
+                  <div class="input-group">
+                    <label>
+                      Weight in Grams
+                    </label>
+                    <input
+                      class="form-control"
+                      formControlName="quantityInUnits"
+                      placeholder="Enter Weight in Grams"
+                      type="number"
+                      min="0"
+                      max="1000000"
+                    />
+                    <span
+                      *ngIf="estimatePriceForm.get('quantityInUnits').errors && estimatePriceForm.get('quantityInUnits').dirty"
+                      class="input-error"
+                    > Please enter a number ranging between 0.1 and 1000000.00
+                    </span>
+                  </div>
+                  <div class="input-group">
+                    <label>
+                      Gold Price/Gram
+                    </label>
+                    <input
+                      class="form-control"
+                      formControlName="pricePerUnit"
+                      placeholder="Enter Gold Price Per Gram"
+                      type="number"
+                      min="0"
+                      max="1000000"
+                    />
+                    <span
+                      *ngIf="estimatePriceForm.get('pricePerUnit').errors && estimatePriceForm.get('pricePerUnit').dirty"
+                      class="input-error"
+                    > Please enter a number ranging between 0.1 and 1000000.00
+                    </span>
+                  </div>
+                  <div class="input-group" *ngIf="auth.isPriviledged">
+                    <label>
+                      Discount %
+                    </label>
+                    <input
+                      class="form-control"
+                      type="number"
+                      [ngModel]="discountPercent"
+                      [ngModelOptions]="{standalone: true}"
+                      readonly
+                    />
+                  </div>
+                  <div class="input-group">
+                    <label>
+                      Total Estimated Price
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [ngModel]="estimatedPrice"
+                      [ngModelOptions]="{standalone: true}"
+                      readonly
+                    />
+                  </div>
+                  <div>
+                    <button
+                      class="btn bg-primary btn-flat spacing"
+                      type="submit"
+                      [disabled]="!estimatePriceForm.valid"
+                    >
+                      <i class="fa fa-calculate"></i>
+                      Calculate
+                    </button>
+                    <button
+                      class="btn bg-primary btn-flat spacing"
+                      type="button"
+                      (click)="printToScreen()"
+                      [disabled]="!estimatePriceForm.valid"
+                    >
+                      <i class="fa fa-calculate"></i>
+                      Print to Screen
+                    </button>
+                    <button
+                      class="btn bg-primary btn-flat spacing"
+                      type="button"
+                      (click)="printToFile()"
+                      [disabled]="!estimatePriceForm.valid"
+                    >
+                      <i class="fa fa-calculate"></i>
+                      Print to File
+                    </button>
+                    <button
+                      class="btn bg-primary btn-flat spacing"
+                      type="button"
+                      (click)="printToPaper()"
+                      [disabled]="!estimatePriceForm.valid"
+                    >
+                      <i class="fa fa-calculate"></i>
+                      Print to Paper
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
